@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\ToString.Fody.1.11.1\build\ToString.Fody.props" Condition="Exists('..\packages\ToString.Fody.1.11.1\build\ToString.Fody.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A5A5EA65-E615-43BF-BFF1-65F4ABB215A2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.1.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.1.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="ModelUtil">
+      <HintPath>..\Lib\ModelUtil.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.3.3.0\lib\net45\Ninject.Extensions.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception.DynamicProxy, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.DynamicProxy.3.3.0\lib\net45\Ninject.Extensions.Interception.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Xml, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Xml.3.3.0\lib\net45\Ninject.Extensions.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ToString, Version=1.11.1.0, Culture=neutral, PublicKeyToken=15432f00798e61a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToString.Fody.1.11.1\lib\net452\ToString.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BankCard.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Daos\BankCardDao\BankCardDaoEntityFramework.cs" />
+    <Compile Include="Daos\BankCardDao\IBankCardDao.cs" />
+    <Compile Include="Daos\CategoryDao\CategoryDaoEntityFramework.cs" />
+    <Compile Include="Daos\CategoryDao\ICategoryDao.cs" />
+    <Compile Include="Daos\CommentDao\CommentDaoEntityFramework.cs" />
+    <Compile Include="Daos\CommentDao\ICommentDao.cs" />
+    <Compile Include="Daos\GarageDao\GarageDaoEntityFramework.cs" />
+    <Compile Include="Daos\GarageDao\IGarageDao.cs" />
+    <Compile Include="Daos\OrderDao\IOrderDao.cs" />
+    <Compile Include="Daos\OrderDao\OrderDaoEntityFramework.cs" />
+    <Compile Include="Daos\OrderLineDao\IOrderLineDao.cs" />
+    <Compile Include="Daos\OrderLineDao\OrderLineDaoEntityFramework.cs" />
+    <Compile Include="Daos\ProductDao\IProductDao.cs" />
+    <Compile Include="Daos\ProductDao\ProductDaoEntityFramework.cs" />
+    <Compile Include="Daos\SpecificPropertyDao\ISpecificPropertyDao.cs" />
+    <Compile Include="Daos\SpecificPropertyDao\SpecificPropertyDaoEntityFramework.cs" />
+    <Compile Include="Daos\TagDao\ITagDao.cs" />
+    <Compile Include="Daos\TagDao\TagDaoEntityFramework.cs" />
+    <Compile Include="Daos\UserDao\IUserDao.cs" />
+    <Compile Include="Daos\UserDao\UserDaoEntityFramework.cs" />
+    <Compile Include="Garage.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderLine.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CommentService\CommentBlock.cs" />
+    <Compile Include="Services\CommentService\CommentDetails.cs" />
+    <Compile Include="Services\CommentService\CommentService.cs" />
+    <Compile Include="Services\CommentService\Exceptions\CommentNotFoundException.cs" />
+    <Compile Include="Services\CommentService\Exceptions\EmptyTagsInputException.cs" />
+    <Compile Include="Services\CommentService\Exceptions\TagNotFoundException.cs" />
+    <Compile Include="Services\CommentService\Exceptions\MaxAllowedCharactersExceedException.cs" />
+    <Compile Include="Services\CommentService\ICommentService.cs" />
+    <Compile Include="Services\CommentService\TagDetails.cs" />
+    <Compile Include="Services\OrderService\CartUnit.cs" />
+    <Compile Include="Services\OrderService\ShoppingCartActions.cs" />
+    <Compile Include="Services\OrderService\OrderLineDisplayDetails.cs" />
+    <Compile Include="Services\OrderService\OrderDetails.cs" />
+    <Compile Include="Services\OrderService\Exceptions\InsufficientStockExcepcion.cs" />
+    <Compile Include="Services\OrderService\Exceptions\UserNotAuthenticatedException.cs" />
+    <Compile Include="Services\OrderService\Exceptions\IncorrectBankCardException.cs" />
+    <Compile Include="Services\ProductService\ProductDTO.cs" />
+    <Compile Include="Services\UserService\CardDTO.cs" />
+    <Compile Include="Services\UserService\PreOrderData.cs" />
+    <Compile Include="Services\OrderService\OrderLinePurchaseDetails.cs" />
+    <Compile Include="Services\OrderService\IOrderService.cs" />
+    <Compile Include="Services\OrderService\OrderService.cs" />
+    <Compile Include="Services\ProductService\Exceptions\UserWithoutAdminPrivilegiesException.cs" />
+    <Compile Include="Services\ProductService\UpdateProductDetailsInput.cs" />
+    <Compile Include="Services\ProductService\IProductService.cs" />
+    <Compile Include="Services\ProductService\ProductDetails.cs" />
+    <Compile Include="Services\ProductService\ProductService.cs" />
+    <Compile Include="Services\UserService\Exceptions\IncorrectPasswordException.cs" />
+    <Compile Include="Services\UserService\LoginResult.cs" />
+    <Compile Include="Services\UserService\CardDetails.cs" />
+    <Compile Include="Services\UserService\UserDetails.cs" />
+    <Compile Include="Services\UserService\IUserService.cs" />
+    <Compile Include="Services\UserService\UserService.cs" />
+    <Compile Include="Services\UserService\Util\PasswordEncrypter.cs" />
+    <Compile Include="SpecificProperty.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tag.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Sql\SqlServerCreateDatabase.sql" />
+    <Content Include="Sql\SqlServerCreateTables.sql" />
+    <Content Include="Sql\SqlServerInserts.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Fody.6.6.3\build\Fody.targets" Condition="Exists('..\packages\Fody.6.6.3\build\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.6.6.3\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.6.3\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\ToString.Fody.1.11.1\build\ToString.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ToString.Fody.1.11.1\build\ToString.Fody.props'))" />
+  </Target>
+</Project>

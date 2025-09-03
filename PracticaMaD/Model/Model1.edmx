@@ -1,0 +1,834 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="practicamadModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BankCard">
+          <Key>
+            <PropertyRef Name="cardId" />
+          </Key>
+          <Property Name="cardId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="tinyint" Nullable="false" />
+          <Property Name="number" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="cvv" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="expirationDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="isDefault" Type="bit" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="parentId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="commentId" />
+          </Key>
+          <Property Name="commentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="productId" Type="bigint" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+          <Property Name="date" Type="datetime2" Precision="7" />
+          <Property Name="message" Type="varchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="CommentTag">
+          <Key>
+            <PropertyRef Name="commentId" />
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="commentId" Type="bigint" Nullable="false" />
+          <Property Name="tagId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Garage">
+          <Key>
+            <PropertyRef Name="garageId" />
+          </Key>
+          <Property Name="garageId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="purchasingDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="totalPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="expressShipping" Type="bit" Nullable="false" />
+          <Property Name="cardId" Type="bigint" Nullable="false" />
+          <Property Name="userId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderLine">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="units" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="orderId" Type="bigint" Nullable="false" />
+          <Property Name="productId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+          <Property Name="addingDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+          <Property Name="image" Type="varchar" MaxLength="255" />
+          <Property Name="description" Type="varchar" MaxLength="4000" />
+          <Property Name="categoryId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="SpecificProperty">
+          <Key>
+            <PropertyRef Name="value" />
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="value" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="productId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="surnames" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="language" Type="varchar" MaxLength="255" />
+          <Property Name="country" Type="varchar" MaxLength="255" />
+          <Property Name="isAdmin" Type="bit" Nullable="false" />
+          <Property Name="garageId" Type="bigint" />
+        </EntityType>
+        <Association Name="FK__BankCard__userId__31EC6D26">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BankCard" Type="Self.BankCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="BankCard">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Category__parent__24927208">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="Category1">
+              <PropertyRef Name="parentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__product__3C69FB99">
+          <End Role="Product" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__userId__3D5E1FD2">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CommentTa__comme__4222D4EF">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="1" />
+          <End Role="CommentTag" Type="Self.CommentTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="commentId" />
+            </Principal>
+            <Dependent Role="CommentTag">
+              <PropertyRef Name="commentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CommentTa__tagId__4316F928">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="CommentTag" Type="Self.CommentTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="tagId" />
+            </Principal>
+            <Dependent Role="CommentTag">
+              <PropertyRef Name="tagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__cardId__34C8D9D1">
+          <End Role="BankCard" Type="Self.BankCard" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankCard">
+              <PropertyRef Name="cardId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="cardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__userId__35BCFE0A">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderLine__order__38996AB5">
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderLine__produ__398D8EEE">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__categor__276EDEB3">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SpecificP__produ__2A4B4B5E">
+          <End Role="Product" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SpecificProperty" Type="Self.SpecificProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="SpecificProperty">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__garageId__2F10007B">
+          <End Role="Garage" Type="Self.Garage" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Garage">
+              <PropertyRef Name="garageId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="garageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="practicamadModelStoreContainer">
+          <EntitySet Name="BankCard" EntityType="Self.BankCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentTag" EntityType="Self.CommentTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Garage" EntityType="Self.Garage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderLine" EntityType="Self.OrderLine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpecificProperty" EntityType="Self.SpecificProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BankCard__userId__31EC6D26" Association="Self.FK__BankCard__userId__31EC6D26">
+            <End Role="User" EntitySet="User" />
+            <End Role="BankCard" EntitySet="BankCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Category__parent__24927208" Association="Self.FK__Category__parent__24927208">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Category1" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__product__3C69FB99" Association="Self.FK__Comment__product__3C69FB99">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__userId__3D5E1FD2" Association="Self.FK__Comment__userId__3D5E1FD2">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CommentTa__comme__4222D4EF" Association="Self.FK__CommentTa__comme__4222D4EF">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="CommentTag" EntitySet="CommentTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CommentTa__tagId__4316F928" Association="Self.FK__CommentTa__tagId__4316F928">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="CommentTag" EntitySet="CommentTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__cardId__34C8D9D1" Association="Self.FK__Order__cardId__34C8D9D1">
+            <End Role="BankCard" EntitySet="BankCard" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__userId__35BCFE0A" Association="Self.FK__Order__userId__35BCFE0A">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderLine__order__38996AB5" Association="Self.FK__OrderLine__order__38996AB5">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderLine" EntitySet="OrderLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderLine__produ__398D8EEE" Association="Self.FK__OrderLine__produ__398D8EEE">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderLine" EntitySet="OrderLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__categor__276EDEB3" Association="Self.FK__Product__categor__276EDEB3">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SpecificP__produ__2A4B4B5E" Association="Self.FK__SpecificP__produ__2A4B4B5E">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SpecificProperty" EntitySet="SpecificProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__garageId__2F10007B" Association="Self.FK__User__garageId__2F10007B">
+            <End Role="Garage" EntitySet="Garage" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="practicamadModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BankCard">
+          <Key>
+            <PropertyRef Name="cardId" />
+          </Key>
+          <Property Name="cardId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="Byte" Nullable="false" />
+          <Property Name="number" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cvv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="isDefault" Type="Boolean" Nullable="false" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__BankCard__userId__31EC6D26" FromRole="BankCard" ToRole="User" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__Order__cardId__34C8D9D1" FromRole="BankCard" ToRole="Order" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parentId" Type="Int64" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK__Category__parent__24927208" FromRole="Category" ToRole="Category1" />
+          <NavigationProperty Name="Category2" Relationship="Self.FK__Category__parent__24927208" FromRole="Category1" ToRole="Category" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Product__categor__276EDEB3" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="commentId" />
+          </Key>
+          <Property Name="commentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productId" Type="Int64" Nullable="false" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="7" />
+          <Property Name="message" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Comment__product__3C69FB99" FromRole="Comment" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Comment__userId__3D5E1FD2" FromRole="Comment" ToRole="User" />
+          <NavigationProperty Name="Tag" Relationship="Self.CommentTag" FromRole="Comment" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Garage">
+          <Key>
+            <PropertyRef Name="garageId" />
+          </Key>
+          <Property Name="garageId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__User__garageId__2F10007B" FromRole="Garage" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="purchasingDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="totalPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="cardId" Type="Int64" Nullable="false" />
+          <Property Name="userId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="BankCard" Relationship="Self.FK__Order__cardId__34C8D9D1" FromRole="Order" ToRole="BankCard" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Order__userId__35BCFE0A" FromRole="Order" ToRole="User" />
+          <NavigationProperty Name="OrderLine" Relationship="Self.FK__OrderLine__order__38996AB5" FromRole="Order" ToRole="OrderLine" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="expressShipping" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderLine">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="units" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="orderId" Type="Int64" Nullable="false" />
+          <Property Name="productId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__OrderLine__order__38996AB5" FromRole="OrderLine" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__OrderLine__produ__398D8EEE" FromRole="OrderLine" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="productId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <Property Name="addingDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="categoryId" Type="Int64" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__Product__categor__276EDEB3" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK__Comment__product__3C69FB99" FromRole="Product" ToRole="Comment" />
+          <NavigationProperty Name="OrderLine" Relationship="Self.FK__OrderLine__produ__398D8EEE" FromRole="Product" ToRole="OrderLine" />
+          <NavigationProperty Name="SpecificProperty" Relationship="Self.FK__SpecificP__produ__2A4B4B5E" FromRole="Product" ToRole="SpecificProperty" />
+        </EntityType>
+        <EntityType Name="SpecificProperty">
+          <Key>
+            <PropertyRef Name="value" />
+            <PropertyRef Name="productId" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="productId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__SpecificP__produ__2A4B4B5E" FromRole="SpecificProperty" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Comment" Relationship="Self.CommentTag" FromRole="Tag" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="surnames" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="language" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="garageId" Type="Int64" />
+          <NavigationProperty Name="BankCard" Relationship="Self.FK__BankCard__userId__31EC6D26" FromRole="User" ToRole="BankCard" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK__Comment__userId__3D5E1FD2" FromRole="User" ToRole="Comment" />
+          <NavigationProperty Name="Garage" Relationship="Self.FK__User__garageId__2F10007B" FromRole="User" ToRole="Garage" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__Order__userId__35BCFE0A" FromRole="User" ToRole="Order" />
+          <Property Name="isAdmin" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BankCard__userId__31EC6D26">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="BankCard" Type="Self.BankCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="BankCard">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__cardId__34C8D9D1">
+          <End Role="BankCard" Type="Self.BankCard" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankCard">
+              <PropertyRef Name="cardId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="cardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Category__parent__24927208">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="Category1">
+              <PropertyRef Name="parentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__categor__276EDEB3">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__product__3C69FB99">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__userId__3D5E1FD2">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__garageId__2F10007B">
+          <End Role="Garage" Type="Self.Garage" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Garage">
+              <PropertyRef Name="garageId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="garageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__userId__35BCFE0A">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderLine__order__38996AB5">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderLine__produ__398D8EEE">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderLine" Type="Self.OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="OrderLine">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SpecificP__produ__2A4B4B5E">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="SpecificProperty" Type="Self.SpecificProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productId" />
+            </Principal>
+            <Dependent Role="SpecificProperty">
+              <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CommentTag">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="practicamadEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BankCard" EntityType="Self.BankCard" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" />
+          <EntitySet Name="Garage" EntityType="Self.Garage" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="OrderLine" EntityType="Self.OrderLine" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="SpecificProperty" EntityType="Self.SpecificProperty" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK__BankCard__userId__31EC6D26" Association="Self.FK__BankCard__userId__31EC6D26">
+            <End Role="User" EntitySet="User" />
+            <End Role="BankCard" EntitySet="BankCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__cardId__34C8D9D1" Association="Self.FK__Order__cardId__34C8D9D1">
+            <End Role="BankCard" EntitySet="BankCard" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Category__parent__24927208" Association="Self.FK__Category__parent__24927208">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Category1" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__categor__276EDEB3" Association="Self.FK__Product__categor__276EDEB3">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__product__3C69FB99" Association="Self.FK__Comment__product__3C69FB99">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__userId__3D5E1FD2" Association="Self.FK__Comment__userId__3D5E1FD2">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__garageId__2F10007B" Association="Self.FK__User__garageId__2F10007B">
+            <End Role="Garage" EntitySet="Garage" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__userId__35BCFE0A" Association="Self.FK__Order__userId__35BCFE0A">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderLine__order__38996AB5" Association="Self.FK__OrderLine__order__38996AB5">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderLine" EntitySet="OrderLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderLine__produ__398D8EEE" Association="Self.FK__OrderLine__produ__398D8EEE">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderLine" EntitySet="OrderLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SpecificP__produ__2A4B4B5E" Association="Self.FK__SpecificP__produ__2A4B4B5E">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SpecificProperty" EntitySet="SpecificProperty" />
+          </AssociationSet>
+          <AssociationSet Name="CommentTag" Association="Self.CommentTag">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="practicamadModelStoreContainer" CdmEntityContainer="practicamadEntities">
+          <EntitySetMapping Name="BankCard">
+            <EntityTypeMapping TypeName="practicamadModel.BankCard">
+              <MappingFragment StoreEntitySet="BankCard">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="cardId" ColumnName="cardId" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="cvv" ColumnName="cvv" />
+                <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="practicamadModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="practicamadModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="commentId" ColumnName="commentId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="message" ColumnName="message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Garage">
+            <EntityTypeMapping TypeName="practicamadModel.Garage">
+              <MappingFragment StoreEntitySet="Garage">
+                <ScalarProperty Name="garageId" ColumnName="garageId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="practicamadModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="expressShipping" ColumnName="expressShipping" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="purchasingDate" ColumnName="purchasingDate" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="cardId" ColumnName="cardId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderLine">
+            <EntityTypeMapping TypeName="practicamadModel.OrderLine">
+              <MappingFragment StoreEntitySet="OrderLine">
+                <ScalarProperty Name="units" ColumnName="units" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="practicamadModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="addingDate" ColumnName="addingDate" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecificProperty">
+            <EntityTypeMapping TypeName="practicamadModel.SpecificProperty">
+              <MappingFragment StoreEntitySet="SpecificProperty">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tag">
+            <EntityTypeMapping TypeName="practicamadModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="tagId" ColumnName="tagId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="practicamadModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surnames" ColumnName="surnames" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="garageId" ColumnName="garageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CommentTag" TypeName="practicamadModel.CommentTag" StoreEntitySet="CommentTag">
+            <EndProperty Name="Comment">
+              <ScalarProperty Name="commentId" ColumnName="commentId" />
+            </EndProperty>
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="tagId" ColumnName="tagId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

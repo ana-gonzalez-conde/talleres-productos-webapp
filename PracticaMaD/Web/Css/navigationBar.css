@@ -1,0 +1,68 @@
+﻿/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-center {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+    .navbar-center a, .navbar-center a:visited {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .navbar-center a:hover {
+            color: #CCCCCC;
+            background-color: transparent;
+        }
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .navbar-right a, .cart-icon a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: block; /* Asegúrese de que el enlace ocupe el espacio del contenedor 'cart-icon' */
+        width: 100%; /* Ocupar todo el ancho posible dentro de 'cart-icon' */
+    }
+
+        .navbar-right a:hover, .cart-icon a:hover {
+            color: #CCCCCC;
+            text-decoration: none;
+        }
+
+.cart-icon a {
+    position: relative;
+    display: inline-block;
+    width: 100%; /* Ajuste para que el enlace ocupe todo el espacio horizontal */
+}
+
+.cart-count {
+    position: absolute;
+    bottom: -9px;
+    right: -16px;
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    border: 1px solid #333;
+    pointer-events: none;
+}

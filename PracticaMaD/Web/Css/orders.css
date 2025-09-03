@@ -1,0 +1,57 @@
+﻿/* Estilos generales */
+body, h2, h3, h4, p {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+.orders-header h1 {
+    text-align: left;
+    margin: 20px 0;
+}
+
+.orders-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+    .orders-table th, .orders-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .orders-table th {
+        background-color: #f2f2f2;
+    }
+
+.no-orders-message {
+    color: #306998;
+    background-color: #D9EDF7;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #BCE8F1;
+    border-radius: 5px;
+    display: block; /* Cambiado de none para facilitar la visibilidad durante pruebas */
+    text-align: center;
+}
+
+.error-message {
+    color: #D8000C;
+    background-color: #FFD2D2;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #D8000C;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+}
+
+.order-item:nth-child(odd) {
+    background-color: #f9f9f9;
+}

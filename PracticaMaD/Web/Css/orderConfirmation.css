@@ -1,0 +1,83 @@
+﻿/* Restablecer algunos estilos por defecto */
+body, h2, h3, h4, p {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+.confirmation-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.order-details p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* makes sure the padding doesn't affect the width */
+    margin-top: 5px;
+}
+
+.dropdown {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.button {
+    width: auto;
+    padding: 10px 15px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: block; /* make it a block element */
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+    .button:hover {
+        background-color: #4cae4c;
+    }
+
+
+
+.confirmation-message {
+    color: green;
+    margin-top: 20px;
+}
+
+
+.checkbox {
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.confirmation-message.success {
+    color: green;
+    margin-top: 20px;
+}
+
+.confirmation-message.error {
+    color: red;
+    margin-top: 20px;
+}

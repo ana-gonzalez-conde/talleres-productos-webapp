@@ -1,0 +1,57 @@
+﻿/* Estilos generales */
+body, h2, h3, h4, p {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Estilos para detalles del producto */
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.product-name {
+    margin-left: 20px;
+}
+
+.link-container {
+    text-align: center;
+}
+
+.product-image {
+    width: 40%; /* Ajusta según tus necesidades */
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.image-path {
+    margin-top: 10px;
+    font-style: italic; /* Estilo opcional para diferenciar la ruta */
+}
+
+.product-info {
+    width: 55%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+    .product-info table {
+        width: 100%;
+    }
+
+    .product-info th, .product-info td {
+        padding: 5px 0;
+        font-weight: bold;
+    }

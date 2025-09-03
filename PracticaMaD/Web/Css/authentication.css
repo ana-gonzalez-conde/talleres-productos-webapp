@@ -1,0 +1,9 @@
+﻿#checkRememberPassword {
+    width: auto;
+}
+
+.register-link {
+    display: flex;
+    padding-top: 1.5rem;
+    justify-content: center;
+}

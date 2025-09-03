@@ -1,0 +1,578 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9B0FE8E3-BA0E-4EF1-9CF3-CE291B8FA2B1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Web</RootNamespace>
+    <AssemblyName>Web</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44382</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.1.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.1.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="ModelUtil">
+      <HintPath>..\Lib\ModelUtil.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.3.3.0\lib\net45\Ninject.Extensions.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception.DynamicProxy, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Interception.DynamicProxy.3.3.0\lib\net45\Ninject.Extensions.Interception.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.2.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.2\lib\net45\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi, Version=3.3.1.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.WebApi.3.3.1\lib\net45\Ninject.Web.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Css\orderConfirmation.css" />
+    <Content Include="Css\addBankCard.css" />
+    <Content Include="Css\cart.css" />
+    <Content Include="Css\viewComments.css" />
+    <Content Include="Css\viewOrder.css" />
+    <Content Include="Css\orders.css" />
+    <Content Include="Css\styles.css" />
+    <Content Include="Css\authentication.css" />
+    <Content Include="Css\styles.css" />
+    <Content Include="Css\modal.css" />
+    <Content Include="Css\UpdateBankCard.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\car_wax.jpg" />
+    <Content Include="Images\car_wax_ultimate.jpg" />
+    <Content Include="Images\default-image.jpg" />
+    <Content Include="Images\floor_mats.jpg" />
+    <Content Include="Images\jumper_cables.jpg" />
+    <Content Include="Images\power_drill.jpg" />
+    <Content Include="Images\Spark_plug_2.jpg" />
+    <Content Include="Images\wrench_set.jpg" />
+    <Content Include="Pages\Errors\InternalError.aspx" />
+    <Content Include="Pages\UserExists.aspx" />
+    <Content Include="Pages\User\UpdateBankCard.aspx" />
+    <Content Include="Pages\User\AddBankCard.aspx" />
+    <Content Include="Pages\User\Authentication.aspx" />
+    <Content Include="Pages\User\ChangePassword.aspx" />
+    <Content Include="Pages\User\Logout.aspx" />
+    <Content Include="Pages\User\Register.aspx" />
+    <Content Include="Pages\User\ShowBankCards.aspx" />
+    <Content Include="Pages\User\UpdateUserProfile.aspx" />
+    <Content Include="Pages\Cart.aspx" />
+    <Content Include="Pages\OrderConfirmation.aspx" />
+    <Content Include="Pages\User\AddComment.aspx" />
+    <Content Include="Pages\ViewOrders.aspx" />
+    <Content Include="Pages\ViewOrderDetails.aspx" />
+    <Content Include="Pages\ViewComments.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="Css\navigationBar.css" />
+    <Content Include="Css\productDetails.css" />
+    <Content Include="Css\searchProducts.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Pages\SearchProducts.aspx" />
+    <Content Include="Pages\ProductDetails.aspx" />
+    <Content Include="Pages\NavigationBar.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\Common.es1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Common.gl1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.gl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Common1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HTTP\Session\SessionManager.cs" />
+    <Compile Include="HTTP\Session\SpecificCulturePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HTTP\Session\UserSession.cs" />
+    <Compile Include="HTTP\Util\CookiesManager.cs" />
+    <Compile Include="HTTP\Util\IoC\IoCManagerNinject.cs" />
+    <Compile Include="HTTP\View\ApplicationObjects\BankCardTypes.cs" />
+    <Compile Include="HTTP\View\ApplicationObjects\Countries.cs" />
+    <Compile Include="HTTP\View\ApplicationObjects\Languages.cs" />
+    <Compile Include="HTTP\View\ApplicationObjects\Locale.cs" />
+    <Compile Include="HTTP\View\ApplicationObjects\ProductCategories.cs" />
+    <Compile Include="Pages\BaseUserControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NavigationBar.ascx.cs">
+      <DependentUpon>NavigationBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NavigationBar.ascx.designer.cs">
+      <DependentUpon>NavigationBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProductDetails.aspx.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ProductDetails.aspx.designer.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SearchProducts.aspx.cs">
+      <DependentUpon>SearchProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SearchProducts.aspx.designer.cs">
+      <DependentUpon>SearchProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserExists.aspx.cs">
+      <DependentUpon>UserExists.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UserExists.aspx.designer.cs">
+      <DependentUpon>UserExists.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\UpdateBankCard.aspx.cs">
+      <DependentUpon>UpdateBankCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\UpdateBankCard.aspx.designer.cs">
+      <DependentUpon>UpdateBankCard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\AddBankCard.aspx.cs">
+      <DependentUpon>AddBankCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\AddBankCard.aspx.designer.cs">
+      <DependentUpon>AddBankCard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Authentication.aspx.cs">
+      <DependentUpon>Authentication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Authentication.aspx.designer.cs">
+      <DependentUpon>Authentication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\ShowBankCards.aspx.cs">
+      <DependentUpon>ShowBankCards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\ShowBankCards.aspx.designer.cs">
+      <DependentUpon>ShowBankCards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\UpdateUserProfile.aspx.cs">
+      <DependentUpon>UpdateUserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\UpdateUserProfile.aspx.designer.cs">
+      <DependentUpon>UpdateUserProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderConfirmation.aspx.cs">
+      <DependentUpon>OrderConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\OrderConfirmation.aspx.designer.cs">
+      <DependentUpon>OrderConfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\AddComment.aspx.cs">
+      <DependentUpon>AddComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\AddComment.aspx.designer.cs">
+      <DependentUpon>AddComment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewOrders.aspx.cs">
+      <DependentUpon>ViewOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ViewOrders.aspx.designer.cs">
+      <DependentUpon>ViewOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewOrderDetails.aspx.cs">
+      <DependentUpon>ViewOrderDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ViewOrderDetails.aspx.designer.cs">
+      <DependentUpon>ViewOrderDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewComments.aspx.cs">
+      <DependentUpon>ViewComments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ViewComments.aspx.designer.cs">
+      <DependentUpon>ViewComments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PracticaMaD.Master.cs">
+      <DependentUpon>PracticaMaD.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PracticaMaD.Master.designer.cs">
+      <DependentUpon>PracticaMaD.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Errors\InternalError.aspx.cs">
+      <DependentUpon>InternalError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Errors\InternalError.aspx.designer.cs">
+      <DependentUpon>InternalError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PracticaMaD.Master" />
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{a5a5ea65-e615-43bf-bff1-65f4abb215a2}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\MainPage.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\App_LocalResources\MainPage.aspx.gl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\App_LocalResources\MainPage.aspx.resx" />
+    <Content Include="Pages\App_LocalResources\UserExists.aspx.es.resx" />
+    <Content Include="Pages\App_LocalResources\UserExists.aspx.gl.resx" />
+    <Content Include="Pages\App_LocalResources\UserExists.aspx.resx" />
+    <Content Include="Pages\Errors\App_LocalResources\InternalError.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\Errors\App_LocalResources\InternalError.aspx.gl.resx" />
+    <Content Include="Pages\Errors\App_LocalResources\InternalError.aspx.resx" />
+    <Content Include="Pages\User\App_LocalResources\Authentication.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\User\App_LocalResources\Authentication.aspx.gl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\User\App_LocalResources\Authentication.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\User\App_LocalResources\ChangePassword.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\User\App_LocalResources\ChangePassword.aspx.gl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\User\App_LocalResources\ChangePassword.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\User\App_LocalResources\Register.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\User\App_LocalResources\Register.aspx.gl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\User\App_LocalResources\Register.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.gl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Common.es.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Common.es1.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Common.gl.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Common.gl1.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Common.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Common1.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\PracticaMaD.Master.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_LocalResources\PracticaMaD.Master.gl.resx" />
+    <Content Include="App_LocalResources\PracticaMaD.Master.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\AddBankCard.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\AddBankCard.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\UpdateBankCard.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\UpdateBankCard.aspx.gl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\UpdateBankCard.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\ShowBankCards.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\ShowBankCards.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\ShowBankCards.aspx.gl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\AddBankCard.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\NavigationBar.ascx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\NavigationBar.ascx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\NavigationBar.ascx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\SearchProducts.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\SearchProducts.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\SearchProducts.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ProductDetails.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ProductDetails.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ProductDetails.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\Cart.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\Cart.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\Cart.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\OrderConfirmation.aspx.resx" />
+    <Content Include="Pages\App_LocalResources\OrderConfirmation.aspx.es.resx" />
+    <Content Include="Pages\App_LocalResources\OrderConfirmation.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ViewOrders.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ViewOrders.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ViewOrders.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ViewOrderDetails.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ViewOrderDetails.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ViewOrderDetails.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ViewComments.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ViewComments.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_LocalResources\ViewComments.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\AddComment.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\AddComment.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\User\App_LocalResources\AddComment.aspx.gl.resx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49314</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44382/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
